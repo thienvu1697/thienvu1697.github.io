@@ -1,0 +1,57 @@
+* { box-sizing: border-box; padding: 0; margin: 0; }
+
+body {
+	background: #fefefe;
+	font-family: Roboto, "serif";
+	line-height: 1.6;
+	font-size: 14pt;
+}
+
+h { font-size: 500%; font-weight: bold; }
+
+h2 { font-size: 550%; font-weight: 700; font-family: Arial; }
+
+h3 { font-size: 400%; font-weight: 700; font-family: Arial; }
+
+.text-jp { font-size: 13pt; line-height: 1.8; }
+
+.text-large { font-size: 120%; }
+
+.padding-15 { padding: 15px; }
+
+/* Style the video: 100% width and height to cover the entire window */
+#myVideo {
+	width: 100%;
+	margin: auto;
+}
+
+.container {
+	position: relative;
+	overflow: hidden;
+	max-width: 1440px;
+	width: 80%;
+	margin: auto;
+}
+
+.section {
+	display: flex;
+	flex-flow: row wrap;
+	padding-bottom: 25vh;
+}
+
+.section .cl-6 {
+	width: 50%;
+}
+
+.section .cl-5 { width: 41.67%; } .section .cl-7 { width: 58.33% }
+
+.section .cl-pull-1 { margin-left: -8.33%; }
+
+.text-stroke {
+	color: #f4f4f4;
+	text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
+}
