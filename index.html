@@ -6,143 +6,189 @@
 </head>
 	<link rel="stylesheet" type="text/css" href="css/index.css">
 	<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+	<script src="js/TweenMax.js"></script>
+	<script src="js/jquery-3.4.1.js"></script>
+	<script src="js/ScrollMagic.js"></script>
+	<script src="js/plugins/animation.gsap.js"></script>
+	<script src="js/plugins/debug.addIndicators.js"></script>
 	<script src="js/pixi.min.js"></script>
 <body>
 	
 	<div class="container">
 		
 		<script>
+			// init controller
+			var controller = new ScrollMagic.Controller();
+		</script>
+		
+		<div id="trigger"></div>
+		
+		<script>
+			
+			var canvas = document.getElementById("myCanvas");
 			
 			var app = new PIXI.Application({ transparent: true });
 			document.body.appendChild(app.view);
 			app.renderer.view.style.display = "block";
+			app.renderer.view.style.position = "absolute";
 			app.renderer.view.style.margin = "auto";
 			app.renderer.autoResize = true;
 			app.renderer.resize(window.innerWidth, window.innerHeight);
-		
+			
+			const defaultIcon = new PIXI.Circle(0,0,5);
+			
+			
+			app.renderer.plugins.interaction.cursorStyles.default = defaultIcon;
+			
+			const logo = new PIXI.Container();
+			logo.height = app.screen.height / 5;
+			logo.width = app.screen.width / 5;
+			logo.x = app.screen.width / 2;
+			logo.y = app.screen.height / 2;
+			const textfore = new PIXI.Container();
+			const textback = new PIXI.Container();
+			
+			app.stage.addChild(textback);
+			app.stage.addChild(logo);
+			app.stage.addChild(textfore);
 
-			// Video
-		
-			var texture = new PIXI.Texture.from('EscherStar3D.mp4');
-			var source = texture.baseTexture.source;
-			source.play();
-			
-			var videoSprite = new PIXI.Sprite(texture);
+			app.loader
+				.add('js/EscherStar3D.json')
+				.load(onAssetsLoaded);
 
-			videoSprite.width = app.screen.width * 0.7;
-			videoSprite.height = videoSprite.width * 0.5625;
+			function onAssetsLoaded() {
+				// create an array of textures from an image path
+				const frames = [];
+
+			for (let i = 1; i < 97; i++){ 
+					const val = i < 10 ? `0${i}` : i;
+
+					// magically works since the spritesheet was loaded with the pixi loader
+					frames.push(PIXI.Texture.from(`EscherStar3D.00${val}.png`));
+				}
+
+				// create an AnimatedSprite (brings back memories from the days of Flash, right ?)
+				const anim = new PIXI.AnimatedSprite(frames);
+
+				/*
+				 * An AnimatedSprite inherits all the properties of a PIXI sprite
+				 * so you can change its position, its anchor, mask it, etc
+				 */
+				anim.anchor.set(0.5);
+				anim.animationSpeed = 0.5;
+				anim.play();
+				
+				logo.addChild(anim);
+			}
 			
-			// Circle
+			// Texts
 			
-			var circle = new PIXI.Graphics();
+			// --- define textstyle
 			
-			circle.lineStyle(0); // draw a circle, set the lineStyle to zero so the circle doesn't have an outline
-			circle.beginFill(0xDE3249, 1);
-			circle.drawCircle(0, 0, videoSprite.height/2 * 0.8);
-			circle.endFill();
+			const stlfore = new PIXI.TextStyle({fontFamily: 'Arial',fontSize: app.screen.height / 10,fontWeight: 'bold',fill: 'black',});
+			const stlback = new PIXI.TextStyle({fontFamily: 'Arial',fontSize: app.screen.height / 10 * 0.85,fontWeight: 'bold',fill: 'transparent',stroke: 'black',strokeThickness: 1,});
+
+			// --- define arrays
 			
-			videoSprite.mask = circle;
+			const texts = [];
+			const textposdefaultx = [];
+			const textposdefaulty = [];
+			const textcontent = ["WEB","ウェブ","MOTION","モーション","STORY","ストーリー","INTERACT","インタラク","DESIGN","デザイン"];
+			const textposy = [1,2,3,4,5];
+			const textstyle = [stlfore,stlback];
 			
-			// Text
+			// --- applying text to array
 			
-			var stlF = new PIXI.TextStyle({
-				fontFamily: 'Arial',
-				fontSize: videoSprite.height  / 5,
-				fontWeight: 'bold',
-				fill: 'black',
-			});
-			
-			var stlS = new PIXI.TextStyle({
-				fontFamily: 'Arial',
-				fontSize: videoSprite.height  / 5,
-				fontWeight: 'bold',
-				fill: 'transparent',
-				stroke: 'black',
-				strokeThickness: 1,
-			});
-			
-			var richText = new PIXI.Text('HEADER', stlF);
-			var richText2 = new PIXI.Text('HEADER', stlS);
-			var line2f = new PIXI.Text('TITLE', stlF);
-			var line2s = new PIXI.Text('TITLE', stlS);
-			var line5f = new PIXI.Text('SUBTITLE', stlF);
-			var line5s = new PIXI.Text('SUBTITLE', stlS);
-			var line3f = new PIXI.Text('LOREM', stlF);
-			var line3s = new PIXI.Text('LOREM', stlS);
-			var line4f = new PIXI.Text('IPSUM', stlF);
-			var line4s = new PIXI.Text('IPSUM', stlS);
-			
-			richText2.anchor.set(1,0);
-			line2f.anchor.set(1,0);
-			line3s.anchor.set(1,0);
-			line4f.anchor.set(1,0);
-			line5s.anchor.set(1,0);
-			
-			//get mouse position
-			var getMousePosition = () =>
-			{
-				return app.renderer.plugins.interaction.mouse.global
+			for (let i = 0; i < 10; i++){
+				var text = new PIXI.Text(textcontent[i],textstyle[i%2]);
+				text.x = app.screen.width / 2;
+				if (i % 2 == 0){
+					if (i % 4 == 0){text.anchor.set(1,0.5);} else {text.anchor.set(0,0.5);}
+					text.y = app.screen.height / 10 * textposy[i/2] + app.screen.height / 5;
+					textfore.addChild(text);
+				} else {
+					if ((i-1)%4 == 0){text.anchor.set(0,0.5);} else {text.anchor.set(1,0.5);}
+					text.y = app.screen.height / 10 * textposy[(i-1)/2] + app.screen.height / 5;
+					textback.addChild(text);
+				}
+				textposdefaultx.push(text.x);
+				textposdefaulty.push(text.y);
+				texts.push(text);
 			};
 			
-			//rotation
+			// Button
+			
+			// Animated 
+			
+			var getMousePosition = () => {return app.renderer.plugins.interaction.mouse.global};
+			
 			app.ticker.add(() => {
 				mousePosition = getMousePosition();
-				let dx = mousePosition.x - app.screen.width / 2 ;
-				let dy = mousePosition.y - app.screen.height / 2 ;
-				videoSprite.x = - dx * 0.01 + app.screen.width / 2 - videoSprite.width / 2;
-				videoSprite.y = - dy * 0.01 + app.screen.height / 2 - videoSprite.height / 2;
-				circle.x = dx * 0.005 + app.screen.width / 2;
-				circle.y = dy * 0.005 + app.screen.height / 2;
-				richText2.x = - dx * 0.01 + app.screen.width / 2 + videoSprite.width / 2;
-				richText2.y = - dy * 0.01 + app.screen.height / 2 - videoSprite.height / 2;
-				richText.x = dx * 0.01 + app.screen.width / 2 - videoSprite.width / 2;
-				richText.y = dy * 0.01 + app.screen.height / 2 - videoSprite.height / 2;
+				let coordx = mousePosition.x - app.screen.width / 2 ;
+				let coordy = mousePosition.y - app.screen.height / 2 ;
+				let dvct = Math.sqrt(Math.pow(Math.abs(coordx), 2) + Math.pow(Math.abs(coordy), 2));
+				let scrnvct = Math.sqrt(Math.pow(app.screen.width / 2, 2) + Math.pow(app.screen.height / 2, 2));
+				let dratiox = coordx / app.screen.width * 2;
+				let dratioy = coordy / app.screen.height * 2;
+				let dvctratio = dvct / scrnvct;
+				textfore.x = dratiox * (scrnvct / 100 + Math.pow(Math.abs( 1 - Math.abs(dratiox)),4)*scrnvct / 15);
+				textfore.y = dratioy * (scrnvct / 100 + Math.pow(Math.abs( 1 - Math.abs(dratioy)),4)*scrnvct / 15);
+				textback.x = - dratiox * (scrnvct / 100 + Math.pow(Math.abs( 1 - Math.abs(dratiox)),4)*scrnvct / 15);
+				textback.y = - dratioy * (scrnvct / 100 + Math.pow(Math.abs( 1 - Math.abs(dratioy)),4)*scrnvct / 15);	
 				
-				line2f.x = dx * 0.01 + app.screen.width / 2 + videoSprite.width / 2;
-				line2f.y = dy * 0.01 + app.screen.height / 2 - videoSprite.height / 2 + videoSprite.height / 5;
-				line2s.x = - dx * 0.01 + app.screen.width / 2 - videoSprite.width / 2;
-				line2s.y = - dy * 0.01 + app.screen.height / 2 - videoSprite.height / 2 + videoSprite.height / 5;
+				let textoffsety = [-2,-2,-1,-1,0,0,1,1,2,2]
+				let textoffsetx = [-1,1,2,-2,-4,4,2,-2,-1,1]
 				
-				line3s.x = - dx * 0.01 + app.screen.width / 2 + videoSprite.width / 2;
-				line3s.y = - dy * 0.01 + app.screen.height / 2 - videoSprite.height / 2 + videoSprite.height / 5 * 2;
-				line3f.x = dx * 0.01 + app.screen.width / 2 - videoSprite.width / 2;
-				line3f.y = dy * 0.01 + app.screen.height / 2 - videoSprite.height / 2 + videoSprite.height / 5 * 2;
-				
-				line4f.x = dx * 0.01 + app.screen.width / 2 + videoSprite.width / 2;
-				line4f.y = dy * 0.01 + app.screen.height / 2 - videoSprite.height / 2 + videoSprite.height / 5 * 3;
-				line4s.x = - dx * 0.01 + app.screen.width / 2 - videoSprite.width / 2;
-				line4s.y = - dy * 0.01 + app.screen.height / 2 - videoSprite.height / 2 + videoSprite.height / 5 * 3;
-				
-				line5s.x = - dx * 0.01 + app.screen.width / 2 + videoSprite.width / 2;
-				line5s.y = - dy * 0.01 + app.screen.height / 2 - videoSprite.height / 2 + videoSprite.height / 5 * 4;
-				line5f.x = dx * 0.01 + app.screen.width / 2 - videoSprite.width / 2;
-				line5f.y = dy * 0.01 + app.screen.height / 2 - videoSprite.height / 2 + videoSprite.height / 5 * 4;
-			});
-			
-			app.stage.addChild(richText2);
-			app.stage.addChild(line2s);
-			app.stage.addChild(line3s);
-			app.stage.addChild(line4s);
-			app.stage.addChild(line5s);
-			app.stage.addChild(videoSprite);
-			app.stage.addChild(circle);
-			app.stage.addChild(richText);
-			app.stage.addChild(line2f);
-			app.stage.addChild(line3f);
-			app.stage.addChild(line4f);
-			app.stage.addChild(line5f);
+				if (dvctratio < 0.25){
+					if (dvctratio > 0.05){
+					
+						logo.scale.x = 1 + Math.abs(0.25 - dvctratio) * 0.75;
+						logo.scale.y = 1 + Math.abs(0.25 - dvctratio) * 0.75;
+						
+					for (let i = 0; i < 10; i++){
+						texts[i].y = textposdefaulty[i] + Math.pow(Math.abs(0.25 - dvctratio),0.95) * scrnvct / 4 * textoffsety[i];
+						texts[i].x = textposdefaultx[i] + Math.pow(Math.abs(0.25 - dvctratio),0.95) * scrnvct / 4 * textoffsetx[i];
+					}
+				}};
+			})
 			
 		</script>
 		
 	</div>
 	
-	<div style="padding: 35px;">
-	
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada a diam in dictum. In hac habitasse platea dictumst. Fusce laoreet et sem eget ultricies. Duis et quam in arcu congue sollicitudin. Nulla facilisi. Suspendisse sapien quam, sollicitudin non mattis id, posuere at nisl. Morbi consequat scelerisque mauris, et ultricies diam faucibus in. In congue vulputate viverra. Aenean mollis cursus leo sit amet venenatis. Integer non tellus ac urna porttitor tincidunt. In at nibh ac nulla ultrices convallis sit amet quis turpis. Vivamus tellus velit, pharetra sed imperdiet ut, laoreet in mauris. In vestibulum mi nunc. Nam consectetur nulla nec dui tincidunt tempor. Aliquam pharetra tincidunt nibh, vel imperdiet diam eleifend vel.
+	<div class="container" style="height: 100vh; width: 100vw; padding: 20px; z-index: -1;"><div style="background: #eee; width: 100%; height: 100%;"></div></div>
+		
+	<script>
 
-		Duis lobortis metus ut malesuada pulvinar. Donec ut tellus magna. Proin luctus lorem sed accumsan consequat. Quisque et lacus id nisi interdum semper eu non odio. Ut nec turpis quis eros pharetra bibendum et ut purus. Nullam viverra ipsum quis augue commodo pharetra. Nulla vestibulum eget augue id fringilla. Integer in suscipit est, sit amet maximus augue. Fusce nec vulputate urna, eget sodales mi. Vestibulum consectetur, nulla sit amet lobortis elementum, lectus metus ornare enim, vel suscipit felis sapien sit amet enim. Fusce rutrum lobortis lorem, id aliquet ipsum maximus eget. Proin at est sit amet ex bibendum feugiat eget vitae lectus. Donec ultrices blandit hendrerit. Duis in turpis nisi.
-	
-	</div>
+		var appbg = new PIXI.Application({ transparent: true });
+		document.body.appendChild(appbg.view);
+		appbg.renderer.view.style.position = "fixed";
+		appbg.renderer.view.style.top = 0;
+		appbg.renderer.view.style.left = 0;
+		appbg.renderer.view.style.zindex = 99;
+		appbg.renderer.autoResize = true;
+		appbg.renderer.resize(window.innerWidth, window.innerHeight);
+
+		var cursor = new PIXI.Graphics();
+		cursor.lineStyle(1, 0x000000, 2);
+		cursor.drawCircle(0,0,25);
+		appbg.stage.addChild(cursor);
+
+		//get mouse position
+		var getMousePositionBg = () =>
+		{
+			return appbg.renderer.plugins.interaction.mouse.global
+		};
+
+		let mousePositionBg = getMousePositionBg();
+
+		appbg.ticker.add(() =>	{
+			mousePositionBg = getMousePositionBg();
+			cursor.x = mousePositionBg.x;
+			cursor.y = mousePositionBg.y;
+		});
+
+	</script>
 	
 </body>
 </html>
