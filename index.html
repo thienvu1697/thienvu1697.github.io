@@ -1,0 +1,249 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Tendo</title>
+</head>
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+	<script src="js/TweenMax.js"></script>
+	<script src="js/jquery-3.4.1.js"></script>
+	<script src="js/ScrollMagic.js"></script>
+	<script src="js/plugins/animation.gsap.js"></script>
+	<script src="js/plugins/debug.addIndicators.js"></script>
+	<script src="js/pixi.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.4/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.4/PixiPlugin.min.js"></script>
+<body>
+	
+	<div class="container">
+		
+		
+		
+	</div>
+	
+	<div class="container" style="width: 100vw; height: 100vh; padding: 20px; z-index: -1;"><div id="myJumbotron">
+		
+		<div id="myList">
+			
+			<ul>
+				
+				<li>Tendo</li>
+				
+				<li>Menu</li>
+			
+			</ul>
+		
+		</div>
+		
+		<div id="myNameL">
+		
+			<h>TENDO</h>
+			
+		</div>
+		
+		<canvas id="myLogo"></canvas>
+		
+		<div id="myNameR">
+		
+			<h>TENDO</h>
+			
+		</div>
+		
+	</div></div>
+	
+		<script>
+			
+			var canvas = document.getElementById("myLogo");
+			gsap.registerPlugin(PixiPlugin);
+			
+			const app = new PIXI.Application({ view: canvas, transparent: true, antialias: true});
+			
+			const logo = new PIXI.Container();
+			logo.x = app.screen.width / 2;
+			logo.y = app.screen.height / 2;
+			const textfore = new PIXI.Container();
+			const textback = new PIXI.Container();
+			const background = new PIXI.Container();
+			const foreground = new PIXI.Container();
+			
+			app.stage.addChild(background);
+			app.stage.addChild(textback);
+			app.stage.addChild(logo);
+			app.stage.addChild(foreground);
+			app.stage.addChild(textfore);
+
+			app.loader
+				.add('js/EscherStar3D.json')
+				.load(onAssetsLoaded);
+
+			function onAssetsLoaded() {
+				// create an array of textures from an image path
+				const frames = [];
+
+			for (let i = 1; i < 97; i++){ 
+					const val = i < 10 ? `0${i}` : i;
+
+					// magically works since the spritesheet was loaded with the pixi loader
+					frames.push(PIXI.Texture.from(`EscherStar3D.00${val}.png`));
+				}
+
+				// create an AnimatedSprite (brings back memories from the days of Flash, right ?)
+				const anim = new PIXI.AnimatedSprite(frames);
+
+				/*
+				 * An AnimatedSprite inherits all the properties of a PIXI sprite
+				 * so you can change its position, its anchor, mask it, etc
+				 */
+				anim.anchor.set(0.5);
+				anim.animationSpeed = 0.5;
+				anim.play();
+				
+				logo.addChild(anim);
+			}
+			
+			// Texts
+			
+			// --- define textstyle
+			
+			const stlfore = new PIXI.TextStyle({fontFamily: 'Arial',fontSize: app.screen.height / 10,fontWeight: 'bold',fill: 'black',});
+			const stlback = new PIXI.TextStyle({fontFamily: 'Arial',fontSize: app.screen.height / 10 * 0.85,fontWeight: 'bold',fill: 'transparent',stroke: 'black',strokeThickness: 1,});
+
+			// --- define arrays
+			
+			const texts = [];
+			const textposdefaultx = [];
+			const textposdefaulty = [];
+			const textcontent = ["WEB","ウェブ","MOTION","モーション","STORY","ストーリー","INTERACT","インタラク","DESIGN","デザイン"];
+			const textposy = [1,2,3,4,5];
+			const textstyle = [stlfore,stlback];
+			
+			// --- applying text to array
+			
+			for (let i = 0; i < 10; i++){
+				var text = new PIXI.Text(textcontent[i],textstyle[i%2]);
+				text.x = app.screen.width / 2;
+				if (i % 2 == 0){
+					if (i % 4 == 0){text.anchor.set(1,0.5);} else {text.anchor.set(0,0.5);}
+					text.y = app.screen.height / 10 * textposy[i/2] + app.screen.height / 5;
+					textfore.addChild(text);
+				} else {
+					if ((i-1)%4 == 0){text.anchor.set(0,0.5);} else {text.anchor.set(1,0.5);}
+					text.y = app.screen.height / 10 * textposy[(i-1)/2] + app.screen.height / 5;
+					textback.addChild(text);
+				}
+				textposdefaultx.push(text.x);
+				textposdefaulty.push(text.y);
+				texts.push(text);
+			};
+			
+			// --- Shapes
+			
+			const bgshape = new PIXI.Graphics();
+			bgshape.x = app.screen.width / 2;
+			bgshape.y = app.screen.height / 2;
+			
+			bgshape.lineStyle(1, 0x000000, 1);
+			bgshape.moveTo(0, -app.screen.height / 4 - 75);
+			bgshape.lineTo(app.screen.height / 4 + 75, 0);
+			bgshape.lineTo(0, app.screen.height / 4 + 75);
+			bgshape.lineTo(-app.screen.height / 4 - 75, 0);
+			bgshape.closePath();
+			bgshape.endFill();
+			
+			bgshape.lineStyle(0);
+			bgshape.beginFill(0xFFBB77);
+			bgshape.drawRect(0,-app.screen.height / 4,app.screen.height / 4,app.screen.height / 2);
+			bgshape.endFill();
+			
+			const frshape = new PIXI.Graphics();
+			frshape.x = app.screen.width / 2;
+			frshape.y = app.screen.height / 2;
+		
+			frshape.lineStyle(0);
+			frshape.beginFill(0xFFBB77);
+			frshape.moveTo(0, app.screen.height / 4);
+			frshape.lineTo(-app.screen.height / 4, app.screen.height / 4);
+			frshape.lineTo(-app.screen.height / 4, 0);
+			frshape.closePath();
+			frshape.endFill();
+			
+			frshape.lineStyle(1, 0x000000, 1);
+			frshape.moveTo(0, -app.screen.height / 4 - 75);
+			frshape.lineTo(-app.screen.height / 4 - 75, 0);
+			frshape.lineTo(0, app.screen.height / 4 + 75);
+			frshape.endFill();
+			
+			background.addChild(bgshape);
+			foreground.addChild(frshape);
+			
+			// Button
+			
+			// Animated 
+			
+			var getMousePosition = () => {return app.renderer.plugins.interaction.mouse.global};
+			
+			app.ticker.add(() => {
+				mousePosition = getMousePosition();
+				let coordx = mousePosition.x - app.screen.width / 2 ;
+				let coordy = mousePosition.y - app.screen.height / 2 ;
+				let dvct = Math.sqrt(Math.pow(Math.abs(coordx), 2) + Math.pow(Math.abs(coordy), 2));
+				let scrnvct = Math.sqrt(Math.pow(app.screen.width / 2, 2) + Math.pow(app.screen.height / 2, 2));
+				let dratiox = coordx / app.screen.width * 2;
+				let dratioy = coordy / app.screen.height * 2;
+				let dvctratio = dvct / scrnvct;
+				textfore.x = dratiox * 25;
+				textfore.y = dratioy * 25;
+				textback.x = dratiox * -25;
+				textback.y = dratioy * -25;
+				
+				let textoffsety = [-2,-2,-1,-1,0,0,1,1,2,2]
+				let textoffsetx = [-1,1,2,-2,-4,4,2,-2,-1,1]
+				
+				for (let i = 0; i < 10; i++){
+				
+				if (dvctratio < 0.25){
+						TweenMax.to(texts[i], 0.25, {pixi:{y: textposdefaulty[i] + textoffsety[i] * 20, x: textposdefaultx[i] + textoffsetx[i] * 20}});
+				}
+				
+				else {
+					TweenMax.to(texts[i], 0.2, {pixi:{y: textposdefaulty[i], x: textposdefaultx[i]}});;
+			}
+					}})
+			
+		</script>
+		
+	<script>
+
+		var appbg = new PIXI.Application({ transparent: true });
+		document.body.appendChild(appbg.view);
+		appbg.renderer.view.style.position = "fixed";
+		appbg.renderer.view.style.top = 0;
+		appbg.renderer.view.style.left = 0;
+		appbg.renderer.view.style.zindex = 99;
+		appbg.renderer.autoResize = true;
+		appbg.renderer.resize(window.innerWidth, window.innerHeight);
+
+		var cursor = new PIXI.Graphics();
+		cursor.lineStyle(1, 0x000000, 2);
+		cursor.drawCircle(0,0,25);
+		appbg.stage.addChild(cursor);
+
+		//get mouse position
+		var getMousePositionBg = () =>
+		{
+			return appbg.renderer.plugins.interaction.mouse.global
+		};
+
+		let mousePositionBg = getMousePositionBg();
+
+		appbg.ticker.add(() =>	{
+			mousePositionBg = getMousePositionBg();
+			cursor.x = mousePositionBg.x;
+			cursor.y = mousePositionBg.y;
+		});
+
+	</script>
+	
+</body>
+</html>
