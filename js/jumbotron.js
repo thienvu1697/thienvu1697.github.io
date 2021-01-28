@@ -57,16 +57,16 @@
 
 		// --- define textstyle
 
-		const stlfore = new PIXI.TextStyle({fontFamily: 'Arial',fontSize: app.screen.height / 10,fontWeight: 'bold',fill: 'black',});
-		const stlback = new PIXI.TextStyle({fontFamily: 'Arial',fontSize: app.screen.height / 10 * 0.85,fontWeight: 'bold',fill: 'transparent',stroke: 'black',strokeThickness: 1,});
+		const stlfore = new PIXI.TextStyle({fontFamily: 'Arial',fontSize: app.screen.height / 8,fontWeight: 'bold',fill: 'black',});
+		const stlback = new PIXI.TextStyle({fontFamily: 'Arial',fontSize: app.screen.height / 8 * 0.85,fontWeight: 'bold',fill: 'transparent',stroke: 'black',strokeThickness: 1,});
 
 		// --- define arrays
 
 		const texts = [];
 		const textposdefaultx = [];
 		const textposdefaulty = [];
-		const textcontent = ["WEB","ウェブ","MOTION","モーション","STORY","ストーリー","INTERACT","インタラク","DESIGN","デザイン"];
-		const textposy = [1,2,3,4,5];
+		const textcontent = ["TANG","タン","THIEN","ティーン","VU","ヴ"];
+		const textposy = [1,2,3];
 		const textstyle = [stlfore,stlback];
 
 		// --- applying text to array
@@ -76,11 +76,11 @@
 			text.x = app.screen.width / 2;
 			if (i % 2 == 0){
 				if (i % 4 == 0){text.anchor.set(1,0.5);} else {text.anchor.set(0,0.5);}
-				text.y = app.screen.height / 10 * textposy[i/2] + app.screen.height / 5;
+				text.y = app.screen.height / 10 * textposy[i/2] + app.screen.height / 3;
 				textfore.addChild(text);
 			} else {
 				if ((i-1)%4 == 0){text.anchor.set(0,0.5);} else {text.anchor.set(1,0.5);}
-				text.y = app.screen.height / 10 * textposy[(i-1)/2] + app.screen.height / 5;
+				text.y = app.screen.height / 10 * textposy[(i-1)/2] + app.screen.height / 3;
 				textback.addChild(text);
 			}
 			textposdefaultx.push(text.x);
@@ -103,7 +103,7 @@
 		bgshape.endFill();
 
 		bgshape.lineStyle(0);
-		bgshape.beginFill(0xEBDA83);
+		bgshape.beginFill(0xdfe33f);
 		bgshape.drawRect(0,-app.screen.height / 4,app.screen.height / 4,app.screen.height / 2);
 		bgshape.endFill();
 
@@ -135,7 +135,7 @@
 		selectBtn.x = app.screen.width / 2;
 		selectBtn.y = app.screen.height / 2;
 
-		selectBtn.beginFill(0x000000, 0.4);
+		selectBtn.beginFill(0x000000, 0.1);
 		selectBtn.moveTo(0, -app.screen.height / 4 - 60);
 		selectBtn.lineTo(app.screen.height / 4 + 60, 0);
 		selectBtn.lineTo(0, app.screen.height / 4 + 60);

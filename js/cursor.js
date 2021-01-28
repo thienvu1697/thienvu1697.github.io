@@ -19,7 +19,7 @@
 	cursor.lineTo(-20,0);
 	cursor.closePath();
 	var cursorFill = new PIXI.Graphics();
-	cursorFill.beginFill(0x000000, 0.5);
+	cursorFill.beginFill(0x000000, 0.2);
 	cursorFill.moveTo(0,-20);
 	cursorFill.lineTo(20,0);
 	cursorFill.lineTo(0,20);
