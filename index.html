@@ -11,9 +11,11 @@
 	
 	<div class="container"><div id="myJumbotron">
 		
+		<div id="myJumbotronKeywords"><h1>デザイン</h1><h1>Design</h1><h1>デジタルコンテンツ</h1><h1>Graphic</h1><h1>グラフィック</h1><h1>Story Telling</h1><h1>コミュニケーション</h1><h1>Business</h1><h1>インタラクティブ</h1><h1>Digital Content</h1><h1>ビジネス</h1><h1>Technology</h1><h1>アート</h1><h1>Communication</h1><h1>デザイン</h1><h1>Design</h1><h1>デジタルコンテンツ</h1><h1>Graphic</h1><h1>グラフィック</h1><h1>Story Telling</h1><h1>コミュニケーション</h1><h1>Business</h1><h1>インタラクティブ</h1><h1>Digital Content</h1><h1>ビジネス</h1><h1>Technology</h1><h1>アート</h1><h1>Communication</h1><h1>デザイン</h1><h1>Design</h1><h1>デジタルコンテンツ</h1><h1>Graphic</h1><h1>グラフィック</h1><h1>Story Telling</h1><h1>コミュニケーション</h1><h1>Business</h1><h1>インタラクティブ</h1><h1>Digital Content</h1><h1>ビジネス</h1><h1>Technology</h1><h1>アート</h1><h1>Communication</h1></div>
+		
 		<div id="myNameL">
 		
-			<h class="movable">TENDO</h>
+			<h class="movable">Portfolio</h>
 			
 		</div>
 		
@@ -21,7 +23,7 @@
 		
 		<div id="myNameR">
 		
-			<h class="movableReverse">テンドー</h>
+			<h class="movableReverse">ポートフォリオ</h>
 			
 		</div>
 		
@@ -29,7 +31,7 @@
 		
 	<div class="ourBtn" id="myCTA" onmouseover="mouseOverCTA(true)" onmouseleave="mouseOverCTA(false)" onclick="myScrollTo(mySakuhin)">
 
-		<h2><strong>作品</strong>さくひん</h2>
+		<h2><strong>作品</strong></h2>
 
 	</div>
 	
@@ -43,9 +45,9 @@
 		
 		<div class="ourHeader">
 		
-			<h2 class="movableReverse">TENDO</h2>
+			<h2 class="movableReverse">ABOUT ME</h2>
 
-			<h2 class="movable">テンドー</h2>
+			<h2 class="movable">自己紹介</h2>
 		
 		</div>
 		
@@ -53,7 +55,9 @@
 		
 		<div class="movable" id="myBioP1"><h4>Illustration, Brand Design, Art Direction, Interaction Design, Video Design, Motion Design and Front-End Development</h4></div>
 		
-		<div class="movableReverse" id="myBioP2"><h3>About</h3><p>lorem ipsum（ロレム・イプサム、略してリプサム lipsum ともいう）とは、出版、ウェブデザイン、グラフィックデザインなどの諸分野において使用されている典型的なダミーテキスト。書籍やウェブページや広告などのデザインのプロトタイプを制作したり顧客にプレゼンテーションしたりする際に、まだ正式な文章の出来上がっていないテキスト部分の書体（フォント）、タイポグラフィ、レイアウトなどといった視覚的なデザインを調整したりわかりやすく見せるために用いられる</p></div>
+		<div class="movableReverse" id="myBioP2"><h3>About</h3><p>大学でグラフィックデザイン学部の学生として、勉強していました。現在は主にアートデザイナとウェブデザイナーとして作業しています。</p></div>
+		
+		<div class="movable" id="myBioP3"><p>私は将来デジタルコンテンツクリエイターになりたいと思います。そのために、デザインだけでなく、テクノロジー、UXデザイン、あるいはブジネスなどのような色々な知識を手に入れなければいけないと認識しています。たくさんの領域を学び、駆使して新たな表現やメディアの楽しむ方法を生み出していきたいです。</p></div>
 		
 	</div></div>
 	
@@ -127,7 +131,7 @@
 
 	------------------------------>
 		
-	<div id="myBackgroundBox"><div id="myBackground" style="background: #65F5EC;"><div id="myBackgroundSub"></div><div id="myBackgroundSub2"></div></div></div>
+	<div id="myBackgroundBox"><div id="myBackground" style="background: #eee;"><div id="myBackgroundSub"></div><div id="myBackgroundSub2"></div></div></div>
 	
 	<canvas id="myDecor" style="display: none;"></canvas>
 	<canvas id="myCursor"></canvas>
@@ -164,6 +168,8 @@
 			  }
 				gsap.to(".movable",0.1,{x:xpos,y:ypos});
 				gsap.to(".movableReverse",0.1,{x:-xpos,y:-ypos});
+				gsap.to("#myJumbotronKeywords h1:nth-child(2n)",0.1,{x:xpos,y:ypos});
+				gsap.to("#myJumbotronKeywords h1:nth-child(2n+1)",0.1,{x:-xpos,y:-ypos});
 			}
 			document.onmousemove = findScreenCoords;
 		
