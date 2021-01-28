@@ -1,0 +1,529 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>About</title>
+</head>
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+
+	<body>
+	
+	<div class="container"><div id="myJumbotron">
+		
+		<div id="myNameL">
+		
+			<h>TENDO</h>
+			
+		</div>
+		
+		<canvas id="myLogo"></canvas>
+		
+		<div id="myNameR">
+		
+			<h>テンドー</h>
+			
+		</div>
+		
+	</div></div>
+		
+	<div class="ourBtn" id="myCTA" onmouseover="mouseOverCTA(true)" onmouseleave="mouseOverCTA(false)" onclick="myScrollTo(mySakuhin)">
+
+		<h2><strong>作品</strong>さくひん</h2>
+
+	</div>
+	
+	<!----------------------------
+
+		Biography 
+
+	------------------------------>
+		
+	<div class="container"><div id="myBio">
+		
+		<h2>TENDO</h2>
+		
+		<h2>テンドー</h2>
+		
+		<div id="myBioP1"><h4>Illustration, Brand Design, Art Direction, Interaction Design, Video Design, Motion Design and Front-End Development</h4></div>
+		
+		<div id="myBioP2"><h3>About</h3><p>lorem ipsum（ロレム・イプサム、略してリプサム lipsum ともいう）とは、出版、ウェブデザイン、グラフィックデザインなどの諸分野において使用されている典型的なダミーテキスト。書籍やウェブページや広告などのデザインのプロトタイプを制作したり顧客にプレゼンテーションしたりする際に、まだ正式な文章の出来上がっていないテキスト部分の書体（フォント）、タイポグラフィ、レイアウトなどといった視覚的なデザインを調整したりわかりやすく見せるために用いられる</p></div>
+		
+	</div></div>
+	
+	<!----------------------------
+
+		Sakuhin lists
+
+	------------------------------>
+		
+	<div id="mySakuhin"><ul>
+		
+		<li>
+			<div class="ourBtn" onmouseover="mouseOver(true)" onmouseleave="mouseOver(false)"><img src="img/sakuhinRakugaki/200701_04processed.jpg" alt="200616_01"></div>
+			<h2>落書き編集</h2>
+		 </li>
+		
+		<li>
+			<div class="ourBtn" onmouseover="mouseOver(true)" onmouseleave="mouseOver(false)"><img src="img/sakuhinLittleLittle/breakdown--Fountain_1.gif" alt="macfries"></div>
+			<h2>LITTLE & LITTLE</h2>
+		 </li>
+		
+	</ul></div>
+		
+	<div id="mySakuhinDetailed">
+	
+		<div>
+			
+			<h2>落書き編集</h2>
+			
+			<img class="padding-5" src="img/sakuhinRakugaki/200626_03.jpg" alt="">
+			
+			<img class="padding-5" src="img/sakuhinRakugaki/200701_04processed.jpg" alt="">
+		
+			<img class="padding-5" src="img/sakuhinRakugaki/200708_03processed.jpg" alt="">
+
+			<p></p>
+		
+		<span onmouseover="mouseOver(true)" onmouseleave="mouseOver(false)"></span></div>
+	
+		<div>
+			
+			<h2>LITTLE & LITTLE</h2>
+			
+			<img class="padding-5 width-100" src="img/sakuhinLittleLittle/breakdown--Fountain.gif" alt="a">
+			
+			<img class="padding-5 width-25" src="img/sakuhinLittleLittle/001_1.gif" alt="a">
+			
+			<img class="padding-5 width-25" src="img/sakuhinLittleLittle/002.gif" alt="a">
+			
+			<img class="padding-5 width-25" src="img/sakuhinLittleLittle/003.gif" alt="a">
+			
+			<img class="padding-5 width-25" src="img/sakuhinLittleLittle/004.gif" alt="a">
+
+			<p class="width-100">lorem ipsum（ロレム・イプサム、略してリプサム lipsum ともいう）とは、出版、ウェブデザイン、グラフィックデザインなどの諸分野において使用されている典型的なダミーテキスト。書籍やウェブページや広告などのデザインのプロトタイプを制作したり顧客にプレゼンテーションしたりする際に、まだ正式な文章の出来上がっていないテキスト部分の書体（フォント）、タイポグラフィ、レイアウトなどといった視覚的なデザインを調整したりわかりやすく見せるために用いられる。</p>
+			
+			<img class="padding-5 width-100" src="img/sakuhinLittleLittle/breakdown--Garlic.gif" alt="a">
+		
+		<span onmouseover="mouseOver(true)" onmouseleave="mouseOver(false)"></span></div>
+	
+	</div>
+	
+	<!----------------------------
+
+		Sub-elements
+
+	------------------------------>
+		
+		<div style="width: 100vw; height: 100vh; position: fixed; left: 50%; top: 50%; transform: translate(-50%,-50%); pointer-events: none; padding: 25px;"><div id="myBackground"></div></div>
+		
+		<div id="mySakuhinList" class="ourList">
+		
+			<ul>
+				
+				<li class="ourBtn" onmouseover="mouseOver(true)" onmouseleave="mouseOver(false)"  onclick="myScrollTo(myJumbotron)">Top</li>
+				
+				<li onmouseover="mouseOver(true)" onmouseleave="mouseOver(false)">Menu</li>
+			
+			</ul>
+			
+		</div>
+	
+	<canvas id="myDecor" style="display: none;"></canvas>
+	<canvas id="myCursor"></canvas>
+	
+	<!-- Javascript -->
+		
+	<script src="js/jquery-3.4.1.js"></script>
+	<script src="js/pixi.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.0/gsap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.0/PixiPlugin.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.1/ScrollToPlugin.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.0/ScrollTrigger.min.js"></script>
+	<script src="js/cursor.js"></script>
+		
+	<script>
+
+		var canvasLogo = document.getElementById("myLogo");
+		gsap.registerPlugin(PixiPlugin);
+
+		const app = new PIXI.Application({ view: canvasLogo, transparent: true, antialias: true});
+		app.renderer.view.style.width = canvasLogo.style.width + 'px';
+		app.renderer.view.style.height = canvasLogo.style.height + 'px';
+		app.renderer.view.style.pointerEvents = "none";
+
+		const logo = new PIXI.Container();
+		logo.x = app.screen.width / 2;
+		logo.y = app.screen.height / 2;
+		const textfore = new PIXI.Container();
+		const textback = new PIXI.Container();
+		const background = new PIXI.Container();
+		const foreground = new PIXI.Container();
+
+		app.stage.addChild(background);
+		app.stage.addChild(textback);
+		app.stage.addChild(logo);
+		app.stage.addChild(foreground);
+		app.stage.addChild(textfore);
+
+		app.loader
+			.add('js/EscherStar3D.json')
+			.load(onAssetsLoaded);
+
+		function onAssetsLoaded() {
+			// create an array of textures from an image path
+			const frames = [];
+
+		for (let i = 1; i < 97; i++){ 
+				const val = i < 10 ? `0${i}` : i;
+
+				// magically works since the spritesheet was loaded with the pixi loader
+				frames.push(PIXI.Texture.from(`EscherStar3D.00${val}.png`));
+			}
+
+			// create an AnimatedSprite (brings back memories from the days of Flash, right ?)
+			const anim = new PIXI.AnimatedSprite(frames);
+
+			/*
+			 * An AnimatedSprite inherits all the properties of a PIXI sprite
+			 * so you can change its position, its anchor, mask it, etc
+			 */
+			anim.anchor.set(0.5);
+			anim.animationSpeed = 0.5;
+			anim.height = app.screen.height * 0.9;
+			anim.width = anim.height * 16 / 9;
+			anim.play();
+
+			logo.addChild(anim);
+		}
+
+		// Texts
+
+		// --- define textstyle
+
+		const stlfore = new PIXI.TextStyle({fontFamily: 'Arial',fontSize: app.screen.height / 10,fontWeight: 'bold',fill: 'black',});
+		const stlback = new PIXI.TextStyle({fontFamily: 'Arial',fontSize: app.screen.height / 10 * 0.85,fontWeight: 'bold',fill: 'transparent',stroke: 'black',strokeThickness: 1,});
+
+		// --- define arrays
+
+		const texts = [];
+		const textposdefaultx = [];
+		const textposdefaulty = [];
+		const textcontent = ["WEB","ウェブ","MOTION","モーション","STORY","ストーリー","INTERACT","インタラク","DESIGN","デザイン"];
+		const textposy = [1,2,3,4,5];
+		const textstyle = [stlfore,stlback];
+
+		// --- applying text to array
+
+		for (let i = 0; i < 10; i++){
+			var text = new PIXI.Text(textcontent[i],textstyle[i%2]);
+			text.x = app.screen.width / 2;
+			if (i % 2 == 0){
+				if (i % 4 == 0){text.anchor.set(1,0.5);} else {text.anchor.set(0,0.5);}
+				text.y = app.screen.height / 10 * textposy[i/2] + app.screen.height / 5;
+				textfore.addChild(text);
+			} else {
+				if ((i-1)%4 == 0){text.anchor.set(0,0.5);} else {text.anchor.set(1,0.5);}
+				text.y = app.screen.height / 10 * textposy[(i-1)/2] + app.screen.height / 5;
+				textback.addChild(text);
+			}
+			textposdefaultx.push(text.x);
+			textposdefaulty.push(text.y);
+			texts.push(text);
+		};
+
+		// --- Shapes
+
+		const bgshape = new PIXI.Graphics();
+		bgshape.x = app.screen.width / 2;
+		bgshape.y = app.screen.height / 2;
+
+		bgshape.lineStyle(1, 0x000000, 1);
+		bgshape.moveTo(0, -app.screen.height / 4 - 75);
+		bgshape.lineTo(app.screen.height / 4 + 75, 0);
+		bgshape.lineTo(0, app.screen.height / 4 + 75);
+		bgshape.lineTo(-app.screen.height / 4 - 75, 0);
+		bgshape.closePath();
+		bgshape.endFill();
+
+		bgshape.lineStyle(0);
+		bgshape.beginFill(0xFFBB77);
+		bgshape.drawRect(0,-app.screen.height / 4,app.screen.height / 4,app.screen.height / 2);
+		bgshape.endFill();
+
+		const frshape = new PIXI.Graphics();
+		frshape.x = app.screen.width / 2;
+		frshape.y = app.screen.height / 2;
+
+		frshape.lineStyle(0);
+		frshape.beginFill(0xFFBB77);
+		frshape.moveTo(0, app.screen.height / 4);
+		frshape.lineTo(-app.screen.height / 4, app.screen.height / 4);
+		frshape.lineTo(-app.screen.height / 4, 0);
+		frshape.closePath();
+		frshape.endFill();
+
+		frshape.lineStyle(1, 0x000000, 1);
+		frshape.moveTo(0, -app.screen.height / 4 - 75);
+		frshape.lineTo(-app.screen.height / 4 - 75, 0);
+		frshape.lineTo(0, app.screen.height / 4 + 75);
+		frshape.endFill();
+
+		background.addChild(bgshape);
+		foreground.addChild(frshape);
+
+		// Button
+
+		const selectBtn = new PIXI.Graphics();
+
+		selectBtn.x = app.screen.width / 2;
+		selectBtn.y = app.screen.height / 2;
+
+		selectBtn.beginFill(0x000000, 0.4);
+		selectBtn.moveTo(0, -app.screen.height / 4 - 60);
+		selectBtn.lineTo(app.screen.height / 4 + 60, 0);
+		selectBtn.lineTo(0, app.screen.height / 4 + 60);
+		selectBtn.lineTo(-app.screen.height / 4 - 60, 0);
+		selectBtn.closePath();
+		selectBtn.endFill();
+		selectBtn.scale = 0;
+
+		app.stage.addChild(selectBtn);
+
+		// Animated 
+
+		var mousePosition = app.renderer.plugins.interaction.mouse.global;
+
+		app.ticker.add(() => {
+			let coordx = mousePosition.x - app.screen.width / 2 ;
+			let coordy = mousePosition.y - app.screen.height / 2 ;
+			let dvct = Math.sqrt(Math.pow(Math.abs(coordx), 2) + Math.pow(Math.abs(coordy), 2));
+			let scrnvct = Math.sqrt(Math.pow(app.screen.width / 2, 2) + Math.pow(app.screen.height / 2, 2));
+			let dratiox = coordx / app.screen.width * 2;
+			let dratioy = coordy / app.screen.height * 2;
+			let dvctratio = dvct / scrnvct;
+
+			if (Math.abs(mousePosition.x) > app.screen.width && Math.abs(mousePosition.y) > app.screen.height){
+				textfore.x = 0;
+				textfore.y = 0;
+				textback.x = 0;
+				textback.y = 0;
+			}
+
+			else{
+
+			textfore.x = dratiox * 25;
+			textfore.y = dratioy * 25;
+			textback.x = dratiox * -25;
+			textback.y = dratioy * -25;}
+
+
+			let textoffsety = [-2,-2,-1,-1,0,0,1,1,2,2]
+			let textoffsetx = [-1,1,2,-2,-4,4,2,-2,-1,1]
+
+			for (let i = 0; i < 10; i++){
+
+			if (dvctratio < 0.25){
+				gsap.to(texts[i], 0.25, {pixi:{y: textposdefaulty[i] + textoffsety[i] * 40, x: textposdefaultx[i] + textoffsetx[i] * 40}});
+				gsap.to(selectBtn, 2, {pixi:{scale: 1, transparent: 1}});
+				gsap.to("#myCTA",0.25,{css:{}});
+			}
+
+			else {
+				gsap.to(texts[i], 0.2, {pixi:{y: textposdefaulty[i], x: textposdefaultx[i]}});;
+				gsap.to(selectBtn, 2, {pixi:{scale: 0}});
+		}
+				}})
+
+	</script>
+		
+	<script>
+		
+		gsap.registerPlugin(PixiPlugin);
+		gsap.registerPlugin(ScrollTrigger);
+		gsap.registerPlugin(ScrollToPlugin);
+		
+		// Decor
+		
+		var canvas = document.getElementById("myDecor");
+		
+		var appBgShape = new PIXI.Application({view: myDecor, transparent: true, antialias: true})
+		appBgShape.renderer.view.style.width = canvas.style.width + 'vw';
+		appBgShape.renderer.view.style.height = canvas.style.height + 'vh';
+        appBgShape.renderer.autoResize = true;
+		appBgShape.renderer.view.style.pointerEvents = "none";
+			
+		var bgShapeContainer = new PIXI.Container();
+		appBgShape.stage.addChild(bgShapeContainer);
+		
+		for (let i = 0; i < 4	; i++ ){
+			var bgShape = new PIXI.Graphics();
+			
+			bgShape.lineStyle(0);
+			bgShape.beginFill(0xFFBB77);
+			
+			if (i % 2 == 0){
+				bgShape.drawRect(i * app.screen.width / 4,(Math.random() * app.screen.height) / 4,app.screen.width / 4,Math.random() * 150 + 150);
+			}
+			else {
+				bgShape.drawRect(i * app.screen.width / 4,app.screen.height / 2 + (Math.random() * app.screen.height) / 4,app.screen.width / 4,Math.random() * 150 + 150);
+			};
+			
+			
+			bgShape.endFill();
+			
+			bgShapeContainer.addChild(bgShape);
+		};
+			
+		// Animated 
+
+		var mousePosition = app.renderer.plugins.interaction.mouse.global;
+
+		appBgShape.ticker.add(() => {
+			let coordx = mousePosition.x - app.screen.width / 2 ;
+			let coordy = mousePosition.y - app.screen.height / 2 ;
+			let dvct = Math.sqrt(Math.pow(Math.abs(coordx), 2) + Math.pow(Math.abs(coordy), 2));
+			let scrnvct = Math.sqrt(Math.pow(app.screen.width / 2, 2) + Math.pow(app.screen.height / 2, 2));
+			let dratiox = coordx / app.screen.width * 2;
+			let dratioy = coordy / app.screen.height * 2;
+			let dvctratio = dvct / scrnvct;
+
+			bgShapeContainer.x = -dratiox * 25;
+			bgShapeContainer.y = -dratioy * 25;
+		})
+		
+		// Background shapes - extra
+			
+		gsap.from("#myDecor", {
+			scrollTrigger: {
+				trigger: "#mySakuhin",
+				start: "0",
+				scrub: true,
+				end: "+=200%",
+			},
+			yPercent: 150,
+			ease: "none",
+		})
+		
+		// 
+		
+		gsap.defaults({ease: "none", duration: 1})
+		
+		for (let i = 1; i < 99; i++){ 
+			
+			gsap.from("#mySakuhin ul li:nth-child("+[i]+") div", {
+				scrollTrigger: {
+					trigger: "#mySakuhin ul li:nth-child("+[i]+")",
+					toggleActions: "restart pause restart pause",
+				},
+				scale: 0.9,
+				duration: 0.75,
+				ease: "power1.inOut",
+			})
+			
+			gsap.from("#mySakuhin ul li:nth-child("+[i]+") img", {
+				scrollTrigger: {
+					trigger: "#mySakuhin ul li:nth-child("+[i]+")",
+					toggleActions: "restart pause restart pause",
+				},
+				scale: 1.2,
+				duration: 0.75,
+				ease: "power1.inOut",
+			})
+			
+			$("#mySakuhin ul li:nth-child("+[i]+") div")
+				.mouseover(function(){
+					gsap.to("#mySakuhin ul li:nth-child("+[i]+") img", {
+						css:{opacity: "0.5"},
+						duration: 0.5,
+						ease: "power1.inOut",
+					})
+				})
+				.mouseout(function(){
+					gsap.to("#mySakuhin ul li:nth-child("+[i]+") img", {
+						css:{opacity: "1"},
+						duration: 0.5,
+						ease: "power1.inOut",
+					})
+				})
+				.click(function(){
+					gsap.to("#mySakuhin",{
+						css:{minHeight: "0", height: "0"},
+						duration: 0.5,
+						ease: "power1.out",
+					})
+					gsap.to(".container",{
+						css:{minHeight: "0", height: "0"},
+						duration: 0.5,
+						ease: "power1.out",
+					})
+					gsap.to("#myCTA",{
+						css:{minHeight: "0", top: "-50vh"},
+						duration: 0.5,
+						ease: "power1.out",
+					})
+					gsap.to("#mySakuhinDetailed div:nth-child("+[i]+")",{
+						css:{display: "flex"},
+					})
+					gsap.to(window, {duration: 0.5, scrollTo: 0, ease: "power1.out"});
+					gsap.to("#mySakuhinList ul li", 0.25, {y: -100, ease: "power2.in"});
+				});
+			
+			$("#mySakuhinDetailed div:nth-child("+[i]+") span").click(function(){
+					gsap.to("#mySakuhin",{
+						css:{minHeight: "0", height: "auto"},
+						duration: 0.25,
+						ease: "power4.in",
+					})
+					gsap.to(".container",{
+						css:{minHeight: "0", height: "auto"},
+						duration: 0.25,
+						ease: "power1.in",
+					})
+					gsap.to("#myCTA",{
+						css:{minHeight: "0", top: "50vh"},
+						duration: 0.5,
+						ease: "power1.in",
+					})
+					gsap.to("#mySakuhinDetailed div",{
+						css:{display: "none"},
+					})
+					gsap.to("#mySakuhinList ul li", 0.25, {y: 0, ease: "power2.out"});
+					setTimeout(function() { 
+						gsap.to(window, {duration: 1, scrollTo: "#mySakuhin ul li:nth-child("+[i]+")", ease: "power2.out"});
+					}, 250
+							   )
+					});
+		};
+
+		$("#mySakuhinList ul li")
+			.mouseover(function(){
+				gsap.to(this,0.1,{css:{color: "#fff"}});
+			})
+			.mouseout(function(){
+				gsap.to(this,0.1,{css:{color: "#000"}});
+			});
+		
+		// -----------------------------------
+		//
+		// Biography
+		//
+		// -----------------------------------
+		
+		for (let i = 1; i < 4; i++ ){
+			gsap.to("#myBioP"+[i],
+				{
+				scrollTrigger: {
+					trigger: "#myBio",
+					scrub: true,
+					end: "+=300%",
+				},
+				y: -[i] * window.innerHeight * 0.25,
+				ease: "none",})
+		}
+			
+	</script>
+	<script src="js/load.js"></script>
+	
+</body>
+</html>
