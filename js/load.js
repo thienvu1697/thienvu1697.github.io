@@ -3,7 +3,7 @@ gsap.registerPlugin(ScrollToPlugin);
 gsap.registerPlugin(TextPlugin);
 
 function myScrollTo(myTarget){
-	gsap.to(window, {duration: 1.5, scrollTo: myTarget, ease: "power2.inOut"});
+	gsap.to(window, {duration: 1.5, scrollTo: myTarget, ease: "power1.inOut"});
 	console.log("abc")
 };
 

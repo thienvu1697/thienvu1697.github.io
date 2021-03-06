@@ -16,7 +16,11 @@
 
 	------------------------------>
 		
-	<div class="sakuhinJumbotronImg" id="myJumbotron" style="background-image: url('img/sakuhinDread/dreadDemo.gif');"></div>
+	<div class="sakuhinJumbotronImg" id="myJumbotron" style="background-image: url('img/sakuhinDread/dreadDemo.gif');">
+		
+		<img alt="portfolio arrow" class="scroll-down-arrow" src="img/scroll-down-arrow.svg" onclick="myScrollTo(sakuhinInfo)" onmouseover="mouseOver(true)" onmouseleave="mouseOver(false)">
+		
+	</div>
 		
 	
 	<!----------------------------
@@ -25,9 +29,9 @@
 
 	------------------------------>
 		
-	<div class="container">
+	<div class="container" id="sakuhinInfo"> 
 		
-	<div class="section">
+	<div class="section" >
 		
 		<div class="cl-6">
 			
@@ -36,7 +40,8 @@
             <strong>タイトル</strong>：　DREAD<br>
             <strong>制作年月</strong>：　2018年9月～12月<br>
 			After Effect / Premiere / Photoshop / Illustrator<br>
-			javascript / css / html</p>
+			javascript / css / html<br><br>
+			<a href="https://thienvu1697.github.io/dread/">https://thienvu1697.github.io/dread/</a></p>
 		
 		</div>
 		
@@ -84,7 +89,9 @@
 
 	------------------------------>
 		
-	<div id="myBackgroundBox"><div id="myBackground"><div id="myBack" onClick="link('index.html');myScrollTo(myJumbotron)" onmouseover="mouseOver(true)" onmouseleave="mouseOver(false)">もどる</div></div></div>
+	<div id="myBackgroundBox"><div id="myBackground"></div></div>
+		
+	<div id="myBack" onClick="link('index.html');myScrollTo(myJumbotron)" onmouseover="mouseOver(true)" onmouseleave="mouseOver(false)">もどる</div>
 		
 	<canvas id="myCursor"></canvas>
 	

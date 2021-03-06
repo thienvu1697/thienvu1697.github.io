@@ -184,6 +184,7 @@ img { max-width: 100%; }
 	width: calc(33% - 50px);
 	margin: 25px;
 	position: relative;
+	cursor: pointer;
 }
 
 .ourSakuhinThumbnail h3 {

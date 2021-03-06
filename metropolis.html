@@ -16,7 +16,11 @@
 
 	------------------------------>
 		
-	<div class="sakuhinJumbotronImg" id="myJumbotron" style="background-image: url('img/sakuhinKeyframe/keyframeDemo.gif');"></div>
+	<div class="sakuhinJumbotronImg" id="myJumbotron" style="background-image: url('img/sakuhinKeyframe/keyframeDemo.gif');">
+		
+		<img alt="portfolio arrow" class="scroll-down-arrow" src="img/scroll-down-arrow.svg" onclick="myScrollTo(sakuhinInfo)" onmouseover="mouseOver(true)" onmouseleave="mouseOver(false)">
+		
+	</div>
 		
 	
 	<!----------------------------
@@ -25,7 +29,7 @@
 
 	------------------------------>
 		
-	<div class="container">
+	<div class="container" id="sakuhinInfo">
 		
 	<div class="section">
 		
@@ -69,7 +73,7 @@
 
 	------------------------------>
 		
-	<div id="myBackgroundBox"><div id="myBackground"><div id="myBack" onClick="link('index.html');myScrollTo(myJumbotron)" onmouseover="mouseOver(true)" onmouseleave="mouseOver(false)">もどる</div></div></div>
+	<div id="myBackgroundBox"><div id="myBackground"></div></div><div id="myBack" onClick="link('index.html');myScrollTo(myJumbotron)" onmouseover="mouseOver(true)" onmouseleave="mouseOver(false)">もどる</div>
 		
 	<canvas id="myCursor"></canvas>
 	
